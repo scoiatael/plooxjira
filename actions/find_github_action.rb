@@ -31,6 +31,8 @@ class FindGithubAction
       FixJiraIssue.new(key: jira_key, status: 'In Progress')
     when 'created'
       CommentJiraIssue.new(key: jira_key, body: extract_comment_body(@params))
+    when 'assigned'
+      FixJiraIssue.new(key: jira_key, status: 'In Progress')
     else
       default
     end
