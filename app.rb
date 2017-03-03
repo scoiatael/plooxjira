@@ -1,3 +1,4 @@
+# Api entrypoint
 class App < Sinatra::Base
   before do
     request.body.rewind
@@ -7,9 +8,8 @@ class App < Sinatra::Base
   post '/payload' do
     signature = env['X-Hub-Signature'] || env['HTTP_X_HUB_SIGNATURE']
     puts "Signature: #{signature}"
-    body_hmac = CalculateHubSignature.new.call(params)
-    body_hmac2 = CalculateHubSignature.new.call(@body)
-    puts "Calculated: #{body_hmac}, #{body_hmac2}"
+    body_hmac = CalculateHubSignature.new.call(@body)
+    puts "Calculated: #{body_hmac}"
     'OK'
   end
 end
