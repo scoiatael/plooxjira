@@ -17,6 +17,11 @@
 ### Environment variables
 * `JIRA_USER` - your Jira username. The one you use to log in on https://id.atlassian.com
 * `JIRA_PASS` - password, similar to above.
+* `JIRA_URL` - url of your Jira instance
+* `JIRA_PROJECT` - project where new stories should be created
+* `JIRA_ASSIGNEE` - default assignee for Jira stories
+* `JIRA_STORY_ID` - id for Jira story - get that from your Jira instance
+* `JIRA_SUBTASK_ID` - id for Jira subtask
 * `GH_ACCESS_TOKEN` - your Github access token. Generate new on https://github.com/settings/tokens with `repo` (Full control of private repositories) permissions
 * `GH_SECRET` - random value, generate new on each deployment.
 

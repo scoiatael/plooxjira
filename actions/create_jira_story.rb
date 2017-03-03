@@ -6,10 +6,10 @@ class CreateJiraStory
 
   def call(_)
     issue = Jiralicious::Issue.new
-    issue.fields.set_id('project', '12400')
+    issue.fields.set_id('project', Jira.project)
     issue.fields.set('summary', @title)
-    issue.fields.set_id('issuetype', '10001')
-    issue.fields.set_name('assignee', 'lukasz.czaplinski')
+    issue.fields.set_id('issuetype', Jira.story_id)
+    issue.fields.set_name('assignee', Jira.assignee)
     issue.fields.set('description', @url) if @url
     issue.save!
 

@@ -1,8 +1,29 @@
+# frozen_string_literal: true
+
 Jiralicious.configure do |config|
   # Leave out username and password
   config.username = ENV['JIRA_USER']
   config.password = ENV['JIRA_PASS']
-  config.uri = 'https://nowthis.atlassian.net'
+  config.uri = ENV['JIRA_URL']
   config.api_version = 'latest'
   config.auth_type = :basic
+end
+
+# Global configuration values
+module Jira
+  module_function def project
+    ENV.fetch('JIRA_PROJECT')
+  end
+
+  module_function def assignee
+    ENV.fetch('JIRA_ASSIGNEE')
+  end
+
+  module_function def story_id
+    ENV.fetch('JIRA_STORY_ID')
+  end
+
+  module_function def subtask_id
+    ENV.fetch('JIRA_SUBTASK_ID')
+  end
 end

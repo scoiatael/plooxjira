@@ -8,9 +8,9 @@ class CreateJiraSubtask
   def call(_)
     issue = Jiralicious::Issue.new
     issue.fields.set_id('parent', @parent)
-    issue.fields.set_id('project', '12400')
+    issue.fields.set_id('project', Jira.project)
     issue.fields.set('summary', @title)
-    issue.fields.set_id('issuetype', '10003')
+    issue.fields.set_id('issuetype', Jira.subtask_id)
     issue.fields.set('description', @url) if @url
     issue.save!
 
