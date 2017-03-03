@@ -57,7 +57,8 @@ class FindGithubAction
   end
 
   def dispatch_milestone(action, milestone)
-    default = NilAction.new("Issue: #{milestone['title']}, Action: #{action}")
+    title = milestone['title']
+    default = NilAction.new("Issue: #{title}, Action: #{action}")
     case action
     when 'created'
       CreateJiraStory.new(title: title, url: milestone['html_url'])
