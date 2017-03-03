@@ -9,3 +9,5 @@ When I add comment on GitHub issue, I want respective Jira issue to have comment
 
 When I create a milestone on Github, I want respective Jira story to be created.
 When I create a milestone on Github, I want respective Jira story key to be added to it.
+
+When I add a milestone to issue on Github, I want respective Jira story have sub-task created.

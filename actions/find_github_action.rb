@@ -2,6 +2,8 @@
 # issue closed -> close Jira issue
 # issue reponed -> move Jira issue to in progress
 # comment created -> add Jira comment
+# milestone created -> create Jira story and update milestone
+# issue milestoned -> create Jira subtask and update issue
 class FindGithubAction
   TITLE_REGEX = /\[(?<jira_key>.*)\].*/
 
@@ -19,16 +21,17 @@ class FindGithubAction
   private
 
   def dispatch_issue(action, issue)
-    jira_key = extract_jira_key(issue)
-    default = NilAction.new("Issue: #{jira_key}, Action: #{action}")
+    default = NilAction.new("Issue: #{issue}, Action: #{action}")
 
-    return default unless issue && jira_key
-
-    issue_action(jira_key, action, default: default)
+    issue_action(issue, action, default: default)
   end
 
-  def issue_action(jira_key, action, default:)
+  def issue_action(issue, action, default:)
+    jira_key = extract_jira_key(issue)
+
     case action
+    when 'milestoned'
+      GithubIssueMilestoned.new(issue: issue, key: extract_jira_key(@params['milestone']))
     when 'closed'
       FixJiraIssue.new(key: jira_key, status: 'Done')
     when 'reopened'
