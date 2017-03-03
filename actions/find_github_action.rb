@@ -37,9 +37,9 @@ class FindGithubAction
   end
 
   def extract_comment_body(params)
-    username = params['comment']['login']
+    username = params['comment']['user']['login']
     comment_url = params['comment']['html_url']
-    body = params['comment']
+    body = params['comment']['body']
     <<~EOF
       #{username} via GitHub: #{comment_url}
       #{body}
