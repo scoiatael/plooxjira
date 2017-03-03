@@ -9,14 +9,18 @@ class FindGithubAction
     @params = params
     action = params['action']
     issue = params['issue']
-    dispatch(action, issue: issue)
+
+    return dispatch_issue(action, issue) if issue
+
+    milestone = params['milestone']
+    dispatch_milestone(action, milestone) if milestone
   end
 
   private
 
-  def dispatch(action, issue:)
-    default = NilAction.new("Issue?: #{!issue.nil?}, Action: #{action}")
+  def dispatch_issue(action, issue)
     jira_key = extract_jira_key(issue)
+    default = NilAction.new("Issue: #{jira_key}, Action: #{action}")
 
     return default unless issue && jira_key
 
@@ -50,5 +54,15 @@ class FindGithubAction
 
   def extract_jira_key(issue)
     TITLE_REGEX.match(issue.fetch('title'))&.[](:jira_key)
+  end
+
+  def dispatch_milestone(action, milestone)
+    default = NilAction.new("Issue: #{milestone['title']}, Action: #{action}")
+    case action
+    when 'created'
+      CreateJiraStory.new(title: title, url: milestone['html_url'])
+    else
+      default
+    end
   end
 end

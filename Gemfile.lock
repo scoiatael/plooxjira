@@ -1,10 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     ast (2.3.0)
     byebug (9.0.6)
     coderay (1.1.1)
     crack (0.1.8)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     git-version-bump (0.15.1)
     hashie (2.1.2)
     httparty (0.11.0)
@@ -21,8 +25,11 @@ GEM
     method_source (0.8.2)
     multi_json (1.12.1)
     multi_xml (0.6.0)
+    multipart-post (2.0.0)
     nokogiri (1.5.11)
     oauth (0.5.1)
+    octokit (4.6.2)
+      sawyer (~> 0.8.0, >= 0.5.3)
     parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
@@ -33,6 +40,7 @@ GEM
     pry-byebug (3.4.2)
       byebug (~> 9.0)
       pry (~> 0.10)
+    public_suffix (2.0.5)
     rack (1.6.5)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
@@ -47,6 +55,9 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    sawyer (0.8.1)
+      addressable (>= 2.3.5, < 2.6)
+      faraday (~> 0.8, < 1.0)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -62,6 +73,7 @@ DEPENDENCIES
   jiralicious
   multi_json
   oauth
+  octokit
   pry-byebug
   rack-contrib
   rubocop
