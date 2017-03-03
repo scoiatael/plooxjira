@@ -33,6 +33,6 @@ class FindGithubAction
   end
 
   def extract_jira_key(issue)
-    TITLE_REGEX.match(issue.fetch('title')).jira_key
+    TITLE_REGEX.match(issue.fetch('title'))&.[](:jira_key)
   end
 end
