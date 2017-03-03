@@ -25,3 +25,25 @@ Set up webhooks for repository which issues should sync to Jira:
 * send all events ('send everything' options when adding new webhook)
 * `application/json` content type
 * secret value equal to `GH_SECRET` you generated during deployment
+
+## Know-how and rough edges
+
+### Jira integration
+https://github.com/dorack/jiralicious
+Uses HTTP Basic authentication - should probably use OAuth for multiple users. But one can get cancer from trying to implement Jira OAuth in Ruby.
+Reading jiralicious is probably the fastest way to finding how to do various things.
+Also, most of calls take magical 'ids' which are quite hard to obtain if you want to hardcode something (https://answers.atlassian.com/questions/274265/jira-project-id).
+
+Problems:
+* project is hard-coded
+* assignee for stories is hardcoded (me)
+* ids for stories / subtasks are hardcoded (they are Jira-instance-dependent?)
+
+### Github integration
+#### API
+https://github.com/octokit/octokit.rb
+Uses Personal Access Token - downside of granting access to all repositories. But AFAIR Github API does not have better approach. Of course, it'd be much nicer to implement GitHub OAuth to get access token from that, instead of manually generating.
+Nice and easy. Awesome API documentation (https://octokit.github.io/octokit.rb/method_list.html).
+
+#### Webhooks
+Different beast. It's easiest to simply trigger a webhook, observe payload sent in webhook settings and then write code accordingly.
