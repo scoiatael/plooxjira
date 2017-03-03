@@ -6,5 +6,3 @@ Dir['config/*.rb', 'actions/*.rb'].sort.each do |f|
   require_relative f
 end
 require_relative 'app'
-binding.pry
-run App
