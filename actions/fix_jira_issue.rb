@@ -1,13 +1,14 @@
 # Change status of Jira issue.
 # By default changes to 'Done'
-# e.g. FixJiraIssue.new(status: 'In Progress').('SBD-240')
+# e.g. FixJiraIssue.new(status: 'In Progress', key: 'SBD-240').call
 class FixJiraIssue
-  def initialize(status: 'Done')
+  def initialize(status: 'Done', key:)
     @status = status
+    @key = key
   end
 
-  def call(key)
-    transitions = Jiralicious::Issue::Transitions.find(key)
+  def call(_)
+    transitions = Jiralicious::Issue::Transitions.find(@key)
     transition_key = find_transition_key(transitions)
     transitions[transition_key].go
   end
