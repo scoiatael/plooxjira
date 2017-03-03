@@ -31,7 +31,7 @@ class FindGithubAction
 
     case action
     when 'milestoned'
-      GithubIssueMilestoned.new(issue: issue, key: extract_jira_key(@params['milestone']))
+      GithubIssueMilestoned.new(issue: issue, key: extract_jira_key(issue['milestone']))
     when 'closed'
       FixJiraIssue.new(key: jira_key, status: 'Done')
     when 'reopened'
