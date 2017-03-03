@@ -7,7 +7,9 @@ class App < Sinatra::Base
 
   post '/payload' do
     signature = env['X-Hub-Signature'] || env['HTTP_X_HUB_SIGNATURE']
-    ok = CalculateHubSignature.new.call(@body) == signature
+    body_hmac = CalculateHubSignature.new.call(@body)
+    puts "Sig: #{signature} Hmac: #{body_hmac}"
+    ok = body_hmac == signature
     return [400, JSON.dump(error: 'Bad signature')] unless ok
 
     'OK'
