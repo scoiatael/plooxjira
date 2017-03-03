@@ -8,6 +8,7 @@ class GithubMilestoneCreated
 
   def call(params)
     issue_key = CreateJiraStory.new(title: @title, url: @url)
+    puts "Created Jira issue with key #{issue_key}"
     SetMilestoneTitle.new(repository: params['repository']['full_name'],
                           number: @number,
                           title: "[#{issue_key}] #{@title}")
