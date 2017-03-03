@@ -4,6 +4,9 @@ class NilAction
   end
 
   def call(_params)
-    puts "#{@tile} called"
+  end
+
+  def to_s
+    "NilAction: #{@title}"
   end
 end

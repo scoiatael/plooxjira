@@ -1,10 +1,12 @@
 # Builds action for Github webhook
 # issue closed -> close Jira issue
 # issue reponed -> move Jira issue to in progress
+# comment created -> add Jira comment
 class FindGithubAction
   TITLE_REGEX = /\[(?<jira_key>.*)\].*/
 
   def call(params)
+    @params = params
     action = params['action']
     issue = params['issue']
     dispatch(action, issue: issue)
@@ -27,9 +29,21 @@ class FindGithubAction
       FixJiraIssue.new(key: jira_key, status: 'Done')
     when 'reopened'
       FixJiraIssue.new(key: jira_key, status: 'In Progress')
+    when 'created'
+      CommentJiraIssue.new(key: jira_key, body: extract_comment_body(@params))
     else
       default
     end
+  end
+
+  def extract_comment_body(params)
+    username = params['comment']['login']
+    comment_url = params['comment']['html_url']
+    body = params['comment']
+    <<~EOF
+      #{username} via GitHub: #{comment_url}
+      #{body}
+    EOF
   end
 
   def extract_jira_key(issue)
