@@ -4,7 +4,7 @@ class CommentJiraIssue
     @body = body
   end
 
-  def call
+  def call(_params)
     Jiralicious::Issue::Comment.add({ body: @body }, @key)
   end
 end
