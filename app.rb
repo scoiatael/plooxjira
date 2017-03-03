@@ -7,6 +7,7 @@ class App < Sinatra::Base
 
   post '/payload' do
     signature = env['X-Hub-Signature'] || env['HTTP_X_HUB_SIGNATURE']
+    _, signature = signature.split('=')
     body_hmac = CalculateHubSignature.new.call(@body)
     puts "Sig: #{signature} Hmac: #{body_hmac}"
     ok = body_hmac == signature
