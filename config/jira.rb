@@ -26,4 +26,8 @@ module Jira
   module_function def subtask_id
     ENV.fetch('JIRA_SUBTASK_ID')
   end
+
+  module_function def component
+    ENV.fetch('JIRA_COMPONENT')
+  end
 end

@@ -12,6 +12,7 @@ class CreateJiraSubtask
     issue.fields.set('summary', @title)
     issue.fields.set_id('issuetype', Jira.subtask_id)
     issue.fields.set('description', @url) if @url
+    issue.fields.set('components', [{ id: Jira.component }])
     issue.save!
 
     issue.jira_key
