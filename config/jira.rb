@@ -30,4 +30,8 @@ module Jira
   module_function def component
     ENV.fetch('JIRA_COMPONENT')
   end
+
+  module_function def storypoints_field__id
+    ENV.fetch('JIRA_STORYPOINTS_FIELD_ID')
+  end
 end
