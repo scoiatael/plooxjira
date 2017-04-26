@@ -7,6 +7,10 @@
 class FindGithubAction
   TITLE_REGEX = /\[(?<jira_key>.*)\].*/
 
+  def self.extract_jira_key(issue)
+    TITLE_REGEX.match(issue.fetch('title'))&.[](:jira_key)
+  end
+
   def call(params)
     @params = params
     action = params['action']
@@ -27,11 +31,11 @@ class FindGithubAction
   end
 
   def issue_action(issue, action, default:)
-    jira_key = extract_jira_key(issue)
+    jira_key = self.class.extract_jira_key(issue)
 
     case action
     when 'milestoned'
-      GithubIssueMilestoned.new(issue: issue, key: extract_jira_key(issue['milestone']))
+      GithubIssueMilestoned.new(issue: issue, key: self.class.extract_jira_key(issue['milestone']))
     when 'closed'
       FixJiraIssue.new(key: jira_key, status: 'Done')
     when 'reopened'
@@ -55,10 +59,6 @@ class FindGithubAction
       #{username} via GitHub: #{comment_url}
       #{body}
     EOF
-  end
-
-  def extract_jira_key(issue)
-    TITLE_REGEX.match(issue.fetch('title'))&.[](:jira_key)
   end
 
   def dispatch_milestone(action, milestone)
