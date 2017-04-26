@@ -40,7 +40,7 @@ class FindGithubAction
       CommentJiraIssue.new(key: jira_key, body: extract_comment_body(@params))
     when 'assigned'
       FixJiraIssue.new(key: jira_key, status: 'In Progress')
-    when 'milestoned'
+    when 'labeled'
       SetJiraIssueEstimate.new(key: jira_key)
     else
       default
