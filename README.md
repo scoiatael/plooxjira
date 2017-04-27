@@ -13,6 +13,7 @@
 - [x] When I add a milestone to issue on Github, I want respective Jira story have sub-task created.
 
 - [x] When I add an estimate to GitHub issue, I want respective Jira story to have story points field updated.
+- [x] When I add an estimate to GitHub issue, and issue is part of milestone, I want respective Jira user story to have story points field updated.
 
 ## Setup
 
