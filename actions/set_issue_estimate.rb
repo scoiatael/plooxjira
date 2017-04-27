@@ -12,7 +12,8 @@ class SetJiraIssueEstimate
     story_points = find_estimate(label)
     return unless story_points
     Actions::Jira::SetIssueStoryPoints.new(key: @key).call(story_points)
-    milestone = params.dig('issue', 'milestone', 'number')
+    milestone = params.dig('issue', 'milestone', 'title')
+    milestone_number = params.dig('issue', 'milestone', 'number')
 
     return unless milestone
     milestone_key = FindGithubAction.extract_jira_key(milestone)
@@ -21,7 +22,7 @@ class SetJiraIssueEstimate
     update_milestone_story_points(
       milestone_key,
       Actions::Github::ListMilestoneLabels
-        .new(params.dig('repository', 'full_name'), milestone)
+        .new(params.dig('repository', 'full_name'), milestone_number)
         .call)
   end
 
