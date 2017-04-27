@@ -10,7 +10,7 @@ module Actions
 
       def call(title:, url: nil)
         issue = Jiralicious::Issue.new
-        issue.fields.set_id('project', ::Jira.project_id)
+        issue.fields.set_id('project', ::Jira.project)
         issue.fields.set('components', [{ id: ::Jira.component }])
         issue.fields.set('summary', title)
         issue.fields.set_id('issuetype', @type)
