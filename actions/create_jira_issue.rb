@@ -5,17 +5,28 @@ class CreateJiraIssue
     @url = issue['html_url']
     @number = issue['number']
 
-    @type = label.fetch('name')
+    @type = type_of(label.fetch('name'))
   end
 
   def call(params)
-    return unless @type == 'bug'
+    return unless @type
     issue_key = Actions::Jira::CreateIssue
-                .new(type: Jira.bug_id)
+                .new(type: @type)
                 .call(title: @title, url: @url)
 
     SetIssueTitle.new(repository: params['repository']['full_name'],
                       number: @number,
                       title: "[#{issue_key}] #{@title}").call(params)
+  end
+
+  private
+
+  def type_of(name)
+    case name
+    when 'bug'
+      Jira.bug_id
+    when 'task'
+      Jira.task_id
+    end
   end
 end

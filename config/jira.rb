@@ -38,4 +38,8 @@ module Jira
   module_function def bug_id
     ENV.fetch('JIRA_BUG_ID')
   end
+
+  module_function def task_id
+    ENV.fetch('JIRA_TASK_ID')
+  end
 end
