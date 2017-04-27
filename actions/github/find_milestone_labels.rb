@@ -5,7 +5,7 @@ module Actions
     # e.g.
     # ListMilestoneLabels.new("nowthisnews/insights-platform", 8)
     class ListMilestoneLabels
-      def inititalize(repository, milestone)
+      def initialize(repository, milestone)
         @repository = repository
         @milestone = milestone
       end
