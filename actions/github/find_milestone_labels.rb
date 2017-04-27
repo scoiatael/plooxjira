@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Actions
-  module GitHub
+  module Github
     # Lists all labels for milestone:
     # e.g.
     # ListMilestoneLabels.new("nowthisnews/insights-platform", 8)
