@@ -15,6 +15,9 @@
 - [x] When I add an estimate to GitHub issue, I want respective Jira story to have story points field updated.
 - [x] When I add an estimate to GitHub issue, and issue is part of milestone, I want respective Jira user story to have story points field updated.
 
+- [x] When I add a label called `bug` to GitHub issue, I want respective Jira bug to be created.
+- [x] When I add a label called `task` to GitHub issue, I want respective Jira task to be created.
+
 ## Setup
 
 ### Environment variables
