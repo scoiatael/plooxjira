@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateJiraSubtask
   def initialize(title:, url: nil, parent:)
     @title = title
@@ -6,15 +7,11 @@ class CreateJiraSubtask
   end
 
   def call(_)
-    issue = Jiralicious::Issue.new
-    issue.fields.set_id('parent', @parent)
-    issue.fields.set_id('project', Jira.project)
-    issue.fields.set('summary', @title)
-    issue.fields.set_id('issuetype', Jira.subtask_id)
-    issue.fields.set('description', @url) if @url
-    issue.fields.set('components', [{ id: Jira.component }])
-    issue.save!
-
-    issue.jira_key
+    Actions::Jira::CreateIssue
+      .new(type: Jira.subtask_id)
+      .call(title: @title, url: @url).call do |issue|
+      issue.fields.set_id('parent', @parent)
+      issue.fields.set('components', [{ id: Jira.component }])
+    end
   end
 end

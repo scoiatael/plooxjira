@@ -4,6 +4,7 @@
 # comment created -> add Jira comment
 # milestone created -> create Jira story and update milestone
 # issue milestoned -> create Jira subtask and update issue
+# issue labeled -> update Jira storypoints / and/or create jira issue
 class FindGithubAction
   TITLE_REGEX = /\[(?<jira_key>.*)\].*/
 
@@ -45,7 +46,7 @@ class FindGithubAction
     when 'assigned'
       FixJiraIssue.new(key: jira_key, status: 'In Progress')
     when 'labeled'
-      SetJiraIssueEstimate.new(key: jira_key)
+      GithubIssueLabeled.new(issue: issue, key: jira_key)
     else
       default
     end

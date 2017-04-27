@@ -10,7 +10,7 @@ module Actions
 
       def call(story_points)
         issue = FindJiraIssue.new.call(@key)
-        issue.fields.set(::Jira.storypoints_field__id, story_points)
+        issue.fields.set(::Jira.storypoints_field_id, story_points)
         issue.save!
       end
     end

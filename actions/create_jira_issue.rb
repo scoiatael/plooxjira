@@ -1,15 +1,18 @@
 # frozen_string_literal: true
-class GithubIssueMilestoned
-  def initialize(issue:, key:)
+class CreateJiraIssue
+  def initialize(issue:, label:)
     @title = issue.fetch('title')
     @url = issue['html_url']
-    @key = key
     @number = issue['number']
+
+    @type = label.fetch('name')
   end
 
   def call(params)
-    id = FindJiraIssue.new.call(@key).id
-    issue_key = CreateJiraSubtask.new(parent: id, title: @title, url: @url).call(params)
+    return unless @type == 'bug'
+    issue_key = Actions::Jira::CreateIssue
+                .new(type: Jira.bug_id)
+                .call(title: @title, url: @url)
 
     SetIssueTitle.new(repository: params['repository']['full_name'],
                       number: @number,

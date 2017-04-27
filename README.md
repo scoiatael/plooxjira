@@ -25,6 +25,7 @@
 * `JIRA_ASSIGNEE` - default assignee for Jira stories
 * `JIRA_STORY_ID` - id for Jira story - get that from your Jira instance
 * `JIRA_SUBTASK_ID` - id for Jira subtask
+* `JIRA_BUG_ID` - id for Jira bug
 * `JIRA_STORYPOINTS_FIELD_ID` - id for Jira story points field
 * `GH_ACCESS_TOKEN` - your Github access token. Generate new on https://github.com/settings/tokens with `repo` (Full control of private repositories) permissions
 * `GH_SECRET` - random value, generate new on each deployment.
