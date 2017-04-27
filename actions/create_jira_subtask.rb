@@ -11,7 +11,6 @@ class CreateJiraSubtask
       .new(type: Jira.subtask_id)
       .call(title: @title, url: @url).call do |issue|
       issue.fields.set_id('parent', @parent)
-      issue.fields.set('components', [{ id: Jira.component }])
     end
   end
 end

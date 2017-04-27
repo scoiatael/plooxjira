@@ -10,9 +10,10 @@ module Actions
 
       def call(title:, url: nil)
         issue = Jiralicious::Issue.new
-        issue.fields.set_id('project', @type)
+        issue.fields.set_id('project', ::Jira.project_id)
+        issue.fields.set('components', [{ id: ::Jira.component }])
         issue.fields.set('summary', title)
-        issue.fields.set_id('issuetype', Jira.story_id)
+        issue.fields.set_id('issuetype', @type)
         issue.fields.set('description', url) if url
         yield(issue) if block_given?
         issue.save!
