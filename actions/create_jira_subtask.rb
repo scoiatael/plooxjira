@@ -9,7 +9,7 @@ class CreateJiraSubtask
   def call(_)
     Actions::Jira::CreateIssue
       .new(type: Jira.subtask_id)
-      .call(title: @title, url: @url).call do |issue|
+      .call(title: @title, url: @url) do |issue|
       issue.fields.set_id('parent', @parent)
     end
   end
