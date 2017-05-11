@@ -15,4 +15,8 @@ class GithubIssueMilestoned
                       number: @number,
                       title: "[#{issue_key}] #{@title}").call(params)
   end
+
+  def to_s
+    "GithubIssueMilestoned: issue => #{@title}, milestone => #{@key}"
+  end
 end
