@@ -8,8 +8,8 @@ class GithubIssueMilestoned
   end
 
   def call(params)
-    id = FindJiraIssue.new.call(@key).id
-    issue_key = CreateJiraSubtask.new(parent: id, title: @title, url: @url).call(params)
+    return if FindGithubAction.extract_jira_key('title' => @title)
+    issue_key = CreateJiraSubtask.new(parent: @key, title: @title, url: @url).call(params)
 
     SetIssueTitle.new(repository: params['repository']['full_name'],
                       number: @number,
