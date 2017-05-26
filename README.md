@@ -18,6 +18,8 @@
 - [x] When I add a label called `bug` to GitHub issue, I want respective Jira bug to be created.
 - [x] When I add a label called `task` to GitHub issue, I want respective Jira task to be created.
 
+- [x] When I create an issue on Jira, it should have Team customfield set.
+
 ## Setup
 
 ### Environment variables
@@ -31,6 +33,8 @@
 * `JIRA_BUG_ID` - id for Jira bug
 * `JIRA_TASK_ID` - id for Jira task
 * `JIRA_STORYPOINTS_FIELD_ID` - id for Jira story points field
+* `JIRA_TEAM_CUSTOMFIELD_ID` - id for Jira team custom field (added by Portfolio)
+* `JIRA_TEAM_ID` - id for Jira team (value for custom field)
 * `GH_ACCESS_TOKEN` - your Github access token. Generate new on https://github.com/settings/tokens with `repo` (Full control of private repositories) permissions
 * `GH_SECRET` - random value, generate new on each deployment.
 

@@ -42,4 +42,12 @@ module Jira
   module_function def task_id
     ENV.fetch('JIRA_TASK_ID')
   end
+
+  module_function def team_customfield_id
+    ENV.fetch('JIRA_TEAM_CUSTOMFIELD_ID')
+  end
+
+  module_function def team_id
+    ENV.fetch('JIRA_TEAM_ID')
+  end
 end
