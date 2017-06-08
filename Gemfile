@@ -13,4 +13,5 @@ gem 'octokit'
 group :test do
   gem 'cucumber'
   gem 'fakeweb'
+  gem 'rack-test'
 end

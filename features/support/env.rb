@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../config'
 require 'fakeweb'
+require_relative '../../config'
+require_relative '../../app'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
@@ -25,3 +26,16 @@ FakeWeb.register_uri(
   Jiralicious.uri + '/rest/auth/latest/session',
   body: fixture('jira_login')
 )
+
+ENV['RACK_ENV'] = 'test'
+
+require 'rack/test'
+
+module TestApp
+  def app
+    App
+  end
+end
+
+World(Rack::Test::Methods)
+World(TestApp)
