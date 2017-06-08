@@ -9,3 +9,8 @@ gem 'jiralicious'
 gem 'rubocop'
 gem 'rack-contrib'
 gem 'octokit'
+
+group :test do
+  gem 'cucumber'
+  gem 'fakeweb'
+end
