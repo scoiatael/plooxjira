@@ -8,14 +8,15 @@ module Actions
         @type = type
       end
 
-      def call(title:, url: nil)
+      def call(title:, url: nil, description: '')
         issue = Jiralicious::Issue.new
         issue.fields.set_id('project', ::Jira.project)
         issue.fields.set('customfield_' + ::Jira.team_customfield_id, ::Jira.team_id)
         issue.fields.set('components', [{ id: ::Jira.component }])
         issue.fields.set('summary', title)
         issue.fields.set_id('issuetype', @type)
-        issue.fields.set('description', url) if url
+        description += "\n#{url}"
+        issue.fields.set('description', description)
         yield(issue) if block_given?
         issue.save!
 
