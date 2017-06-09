@@ -1,0 +1,12 @@
+{
+  "session": {
+    "name": "JSESSIONID",
+    "value": "12345678901234567890"
+  },
+  "loginInfo": {
+    "failedLoginCount": 10,
+    "loginCount": 127,
+    "lastFailedLoginTime": "2011-07-25T06:31:07.556-0500",
+    "previousLoginTime": "2011-07-25T06:31:07.556-0500"
+  }
+}

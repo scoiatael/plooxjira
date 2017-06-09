@@ -1,0 +1,119 @@
+{
+  "expand": "transitions",
+  "transitions": [
+    {
+      "id": "11",
+      "name": "To Do",
+      "to": {
+        "self": "https://nowthis.atlassian.net/rest/api/2/status/11500",
+        "description": "",
+        "iconUrl": "https://nowthis.atlassian.net/",
+        "name": "To Do",
+        "id": "11500",
+        "statusCategory": {
+          "self": "https://nowthis.atlassian.net/rest/api/2/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      },
+      "hasScreen": false
+    },
+    {
+      "id": "21",
+      "name": "Blocked",
+      "to": {
+        "self": "https://nowthis.atlassian.net/rest/api/2/status/11100",
+        "description": "Task is blocked and cannot be progressed",
+        "iconUrl": "https://nowthis.atlassian.net/images/icons/statuses/generic.png",
+        "name": "Blocked",
+        "id": "11100",
+        "statusCategory": {
+          "self": "https://nowthis.atlassian.net/rest/api/2/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      },
+      "hasScreen": false
+    },
+    {
+      "id": "31",
+      "name": "Closed",
+      "to": {
+        "self": "https://nowthis.atlassian.net/rest/api/2/status/6",
+        "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+        "iconUrl": "https://nowthis.atlassian.net/images/icons/statuses/closed.png",
+        "name": "Closed",
+        "id": "6",
+        "statusCategory": {
+          "self": "https://nowthis.atlassian.net/rest/api/2/statuscategory/3",
+          "id": 3,
+          "key": "done",
+          "colorName": "green",
+          "name": "Done"
+        }
+      },
+      "hasScreen": true
+    },
+    {
+      "id": "41",
+      "name": "In Progress",
+      "to": {
+        "self": "https://nowthis.atlassian.net/rest/api/2/status/3",
+        "description": "This issue is being actively worked on at the moment by the assignee.",
+        "iconUrl": "https://nowthis.atlassian.net/images/icons/statuses/inprogress.png",
+        "name": "In Progress",
+        "id": "3",
+        "statusCategory": {
+          "self": "https://nowthis.atlassian.net/rest/api/2/statuscategory/4",
+          "id": 4,
+          "key": "indeterminate",
+          "colorName": "yellow",
+          "name": "In Progress"
+        }
+      },
+      "hasScreen": false
+    },
+    {
+      "id": "$TRANSITION_ID$",
+      "name": "$TRANSITION_NAME$",
+      "to": {
+        "self": "https://nowthis.atlassian.net/rest/api/2/status/10001",
+        "description": "",
+        "iconUrl": "https://nowthis.atlassian.net/",
+        "name": "Done",
+        "id": "10001",
+        "statusCategory": {
+          "self": "https://nowthis.atlassian.net/rest/api/2/statuscategory/3",
+          "id": 3,
+          "key": "done",
+          "colorName": "green",
+          "name": "Done"
+        }
+      },
+      "hasScreen": false
+    },
+    {
+      "id": "61",
+      "name": "In Code Review",
+      "to": {
+        "self": "https://nowthis.atlassian.net/rest/api/2/status/10800",
+        "description": "This status is managed internally by JIRA Software",
+        "iconUrl": "https://nowthis.atlassian.net/",
+        "name": "In Code Review",
+        "id": "10800",
+        "statusCategory": {
+          "self": "https://nowthis.atlassian.net/rest/api/2/statuscategory/4",
+          "id": 4,
+          "key": "indeterminate",
+          "colorName": "yellow",
+          "name": "In Progress"
+        }
+      },
+      "hasScreen": false
+    }
+  ]
+}
