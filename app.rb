@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 # Api entrypoint
 class App < Sinatra::Base
+  use Rack::PostBodyContentTypeParser
+
   before do
     request.body.rewind
     @body = request.body.read
@@ -8,14 +10,14 @@ class App < Sinatra::Base
 
   post '/payload' do
     signature = env['X-Hub-Signature'] || env['HTTP_X_HUB_SIGNATURE']
-    _, signature = signature.split('=')
+    _, signature = signature&.split('=')
     body_hmac = CalculateHubSignature.new.call(@body)
-    puts "Sig: #{signature} Hmac: #{body_hmac}"
+    # puts "Sig: #{signature} Hmac: #{body_hmac}"
     ok = body_hmac == signature
     return [400, JSON.dump(error: 'Bad signature')] unless ok
 
     action = FindGithubAction.new.call(params)
-    puts "Action: #{action}"
+    # puts "Action: #{action}"
 
     action.call(params)
 

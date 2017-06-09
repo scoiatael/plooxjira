@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
+ENV['RACK_ENV'] = 'test'
+ENV['JIRA_USER'] = 'test-user'
+ENV['JIRA_PASS'] = 'extra-secret-pass'
+ENV['JIRA_URL'] = 'http://localhost'
+ENV['GH_ACCESS_TOKEN'] = 'some-long-token'
+
 require 'fakeweb'
+require 'rspec'
+require 'pry'
 require_relative '../../config'
 require_relative '../../app'
 
@@ -24,10 +32,8 @@ end
 FakeWeb.register_uri(
   :post,
   Jiralicious.uri + '/rest/auth/latest/session',
-  body: fixture('jira_login')
+  body: JSON.dump(fixture('jira_login'))
 )
-
-ENV['RACK_ENV'] = 'test'
 
 require 'rack/test'
 

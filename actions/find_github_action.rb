@@ -21,6 +21,8 @@ class FindGithubAction
 
     milestone = params['milestone']
     dispatch_milestone(action, milestone) if milestone
+
+    NilAction.new("Action: #{action}. No issue, nor milestone")
   end
 
   private
