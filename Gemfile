@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '~> 2.3'
 
+gem 'rake'
 gem 'sinatra'
 gem 'oauth'
 gem 'multi_json'
