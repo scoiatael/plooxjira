@@ -4,6 +4,8 @@ ENV['RACK_ENV'] = 'test'
 ENV['JIRA_USER'] = 'test-user'
 ENV['JIRA_PASS'] = 'extra-secret-pass'
 ENV['JIRA_URL'] = 'http://localhost'
+ENV['JIRA_STORY_ID'] = '10001'
+ENV['JIRA_ASSIGNEE'] = '10001'
 ENV['GH_ACCESS_TOKEN'] = 'some-long-token'
 
 require 'fakeweb'

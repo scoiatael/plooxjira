@@ -12,11 +12,32 @@ Given(/^issue named "([^"]*)" can be marked as "([^"]*)" \["([^"]*)"\]$/) do |is
   FakeWeb.register_uri(
     :get,
     url,
-    body: JSON.dump(fixture('jira_issue_transitions')).gsub('$TRANSITION_NAME$', final_state).gsub('$TRANSITION_ID$', id)
+    body: JSON.dump(fixture('jira_issue_transitions'))
+      .gsub('$TRANSITION_NAME$', final_state).gsub('$TRANSITION_ID$', id)
   )
   FakeWeb.register_uri(
     :post,
     url,
     body: ''
   )
+end
+
+Given(/^next Jira issue created will have key "([^"]*)"$/) do |jira_key|
+  url = Jiralicious.uri + '/rest/api/latest/issue/'
+  FakeWeb.register_uri(
+    :post,
+    url,
+    body: <<~EOF
+      {
+        "id":"39000",
+        "key":"#{jira_key}",
+        "self":"http://localhost/rest/api/latest/issue/39000"
+      }
+    EOF
+  )
+end
+
+Then(/^I want Jira user story named "([^"]*)" created$/) do |arg1|
+  # TODO: Write this test.
+  # NOTE: Unfortunately FakeWeb only gives last request, and by time test gets here there were already multiple HTTP requests made.
 end
