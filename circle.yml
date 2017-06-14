@@ -5,4 +5,4 @@ machine:
 test:
   override:
     - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
-    - bundle exec cucumber --format junit --out $CIRCLE_TEST_REPORTS/cucumber/junit.xml
+    - bundle exec cucumber --format pretty --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
