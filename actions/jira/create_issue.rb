@@ -18,9 +18,8 @@ module Actions
         description += "\n#{url}"
         issue.fields.set('description', description)
         yield(issue) if block_given?
-        issue.save!
 
-        issue.jira_key
+        issue.save
       end
     end
   end

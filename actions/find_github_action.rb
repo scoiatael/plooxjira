@@ -20,7 +20,7 @@ class FindGithubAction
     return dispatch_issue(action, issue) if issue
 
     milestone = params['milestone']
-    dispatch_milestone(action, milestone) if milestone
+    return dispatch_milestone(action, milestone) if milestone
 
     NilAction.new("Action: #{action}. No issue, nor milestone")
   end
