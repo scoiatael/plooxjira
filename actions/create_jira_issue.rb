@@ -4,6 +4,7 @@ class CreateJiraIssue
     @title = issue.fetch('title')
     @url = issue['html_url']
     @number = issue['number']
+    @description = issue['body']
 
     @type = type_of(label.fetch('name'))
   end
@@ -12,7 +13,7 @@ class CreateJiraIssue
     return unless @type
     issue_key = Actions::Jira::CreateIssue
                 .new(type: @type)
-                .call(title: @title, url: @url)
+                .call(title: @title, url: @url, description: @description)
 
     SetIssueTitle.new(repository: params['repository']['full_name'],
                       number: @number,
