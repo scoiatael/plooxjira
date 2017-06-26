@@ -20,6 +20,8 @@
 
 - [x] When I create an issue on Jira, it should have Team customfield set.
 
+- [x] When I add a label called `user-story` to GitHub issue, I want respective Jira user story to be created.
+
 ## Setup
 
 ### Environment variables

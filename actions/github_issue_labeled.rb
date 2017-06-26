@@ -8,7 +8,7 @@ class GithubIssueLabeled
   def call(params)
     label = params['label']
 
+    @key ||= CreateJiraIssue.new(issue: @issue, label: label).call(params)
     SetJiraIssueEstimate.new(key: @key).call(params)
-    CreateJiraIssue.new(issue: @issue, label: label).call(params) unless @key
   end
 end

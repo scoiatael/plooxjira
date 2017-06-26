@@ -36,3 +36,27 @@ Then(/^I want Github milestone number "([^"]*)" title changed to "([^"]*)"$/) do
   expect(req.path).to eq "/repos/nowthisnews/insights-platform/milestones/#{number}"
   expect(req.body).to eq "{\"title\":\"#{title}\"}"
 end
+
+Given(/^Github issue number "([^"]*)" named "([^"]*)"$/) do |number, _name|
+  url = "https://api.github.com/repos/nowthisnews/insights-platform/issues/#{number}"
+  FakeWeb.register_uri(
+    :patch,
+    url,
+    body: <<~EOF
+    EOF
+  )
+end
+
+When(/^I label Github issue named "([^"]*)" number "([^"]*)" with "([^"]*)"$/) do |name, number, label|
+  webhook('github_issue_labeled',
+          '$ISSUE_NAME$' => name,
+          '$LABEL$' => label,
+          '"$ISSUE_NUMBER$"' => number)
+  expect(last_response).to be_ok
+end
+
+Then(/^I want Github issue number "([^"]*)" title changed to "([^"]*)"$/) do |number, title|
+  req = FakeWeb.last_request
+  expect(req.path).to eq "/repos/nowthisnews/insights-platform/issues/#{number}"
+  expect(req.body).to eq "{\"title\":\"#{title}\"}"
+end

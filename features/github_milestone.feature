@@ -1,5 +1,4 @@
 Feature: React to transitions of github milestones
-  @focus
   Scenario: User creates github milestone
     Given next Jira issue created will have key "SBD-11"
 

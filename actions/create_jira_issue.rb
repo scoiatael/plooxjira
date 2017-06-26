@@ -17,6 +17,7 @@ class CreateJiraIssue
     SetIssueTitle.new(repository: params['repository']['full_name'],
                       number: @number,
                       title: "[#{issue_key}] #{@title}").call(params)
+    issue_key
   end
 
   private
@@ -27,6 +28,8 @@ class CreateJiraIssue
       Jira.bug_id
     when 'task'
       Jira.task_id
+    when 'user-story'
+      Jira.story_id
     end
   end
 end
